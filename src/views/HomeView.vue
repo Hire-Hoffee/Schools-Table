@@ -1,5 +1,14 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import EduTable from '@/components/table/EduTable.vue'
+</script>
 
 <template>
-  <main>Таблица учреждений</main>
+  <h1>Таблица учреждений</h1>
+  <EduTable />
 </template>
+
+<style scoped lang="scss">
+h1 {
+  font-weight: bold;
+}
+</style>

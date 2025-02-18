@@ -14,10 +14,10 @@ import { RouterLink } from 'vue-router'
 
 <style scoped lang="scss">
 header {
-  background-color: #000;
+  background-color: #0e0e10;
   height: 100px;
   color: #fff;
-  padding: 10px;
+  padding: 20px;
   display: flex;
   justify-content: space-around;
   align-items: flex-end;

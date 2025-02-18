@@ -5,7 +5,13 @@ import AppHeader from '@/components/AppHeader.vue'
 
 <template>
   <AppHeader />
-  <RouterView />
+  <main>
+    <RouterView />
+  </main>
 </template>
 
-<style scoped></style>
+<style scoped>
+main {
+  margin: 24px;
+}
+</style>
