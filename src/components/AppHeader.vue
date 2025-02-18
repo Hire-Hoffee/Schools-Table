@@ -22,6 +22,10 @@ header {
   justify-content: space-around;
   align-items: flex-end;
 
+  h1 {
+    font-weight: bold;
+  }
+
   nav {
     display: flex;
     gap: 20px;

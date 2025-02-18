@@ -1,4 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@font-face {
+  font-family: 'Gotham Pro';
+  src: url('./font/Gotham Pro.ttf');
+}
 
 html {
   box-sizing: border-box;
@@ -27,7 +30,7 @@ ul {
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Gotham Pro', sans-serif;
 }
 
 ol,
