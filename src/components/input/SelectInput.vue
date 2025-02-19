@@ -36,10 +36,11 @@
     border-radius: 10px;
     border: 1px solid #eee;
     appearance: none;
-  }
+    font-size: 16px;
 
-  select:focus {
-    outline: 1px solid #ddd;
+    &:focus {
+      outline: 1px solid #ddd;
+    }
   }
 }
 </style>
