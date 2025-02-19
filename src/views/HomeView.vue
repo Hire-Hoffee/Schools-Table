@@ -2,11 +2,17 @@
 import EduTable from '@/components/table/EduTable.vue'
 import SelectInput from '@/components/input/SelectInput.vue'
 import SearchInput from '@/components/input/SearchInput.vue'
+import ButtonInput from '@/components/input/ButtonInput.vue'
 </script>
 
 <template>
-  <h1>Таблица учреждений</h1>
-  <SearchInput />
+  <div class="header">
+    <h1>Таблица учреждений</h1>
+    <div>
+      <SearchInput />
+      <ButtonInput />
+    </div>
+  </div>
   <div class="inputs-block">
     <SelectInput />
     <SelectInput />
@@ -16,8 +22,19 @@ import SearchInput from '@/components/input/SearchInput.vue'
 </template>
 
 <style scoped lang="scss">
-h1 {
-  font-weight: bold;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h1 {
+    font-weight: bold;
+  }
+
+  div {
+    display: flex;
+    gap: 20px;
+  }
 }
 
 .inputs-block {
