@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import EduTable from '@/components/table/EduTable.vue'
 import SelectInput from '@/components/input/SelectInput.vue'
+import SearchInput from '@/components/input/SearchInput.vue'
 </script>
 
 <template>
   <h1>Таблица учреждений</h1>
+  <SearchInput />
   <div class="inputs-block">
     <SelectInput />
     <SelectInput />
