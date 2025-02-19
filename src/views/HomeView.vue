@@ -3,6 +3,7 @@ import EduTable from '@/components/table/EduTable.vue'
 import SelectInput from '@/components/input/SelectInput.vue'
 import SearchInput from '@/components/input/SearchInput.vue'
 import ButtonInput from '@/components/input/ButtonInput.vue'
+import PaginationBlock from '@/components/pagination/PaginationBlock.vue'
 </script>
 
 <template>
@@ -19,6 +20,7 @@ import ButtonInput from '@/components/input/ButtonInput.vue'
     <SelectInput />
   </div>
   <EduTable />
+  <PaginationBlock />
 </template>
 
 <style scoped lang="scss">
