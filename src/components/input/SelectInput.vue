@@ -37,6 +37,7 @@
     border: 1px solid #eee;
     appearance: none;
     font-size: 16px;
+    cursor: pointer;
 
     &:focus {
       outline: 1px solid #ddd;

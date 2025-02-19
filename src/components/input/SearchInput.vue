@@ -24,7 +24,7 @@
     padding: 18px;
     border-radius: 10px;
     border: 1px solid #eee;
-    width: 100%;
+    width: 300px;
     font-size: 16px;
 
     &:focus {
