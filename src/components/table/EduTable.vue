@@ -4,7 +4,7 @@ import ItemLine from './ItemLine.vue'
 import type { SchoolData } from '@/types/schoolRecords'
 
 defineProps<{
-  schools: SchoolData[] | null
+  schools: SchoolData[] | undefined
 }>()
 </script>
 

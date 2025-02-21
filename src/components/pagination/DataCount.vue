@@ -4,14 +4,14 @@ import SelectInput from '../input/SelectInput.vue'
 import { useSchoolsRecordsStore } from '@/stores/schoolsRecords'
 
 const schoolsStore = useSchoolsRecordsStore()
-const selectedValue = ref(schoolsStore.count)
+const selectedValue = ref(String(schoolsStore.count))
 const options = [
   { label: '5', value: '5' },
   { label: '10', value: '10' },
   { label: '20', value: '20' },
 ]
 
-watch(selectedValue, (newValue) => schoolsStore.updateCount(newValue))
+watch(selectedValue, (newValue) => schoolsStore.updateCount(Number(newValue)))
 </script>
 
 <template>
@@ -37,4 +37,3 @@ watch(selectedValue, (newValue) => schoolsStore.updateCount(newValue))
   }
 }
 </style>
-@/stores/schoolsRecords

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { options } = defineProps<{ options: { label: string; value: string }[] }>()
+const { options } = defineProps<{ options: { label: string; value: string }[] | undefined }>()
 const selectedValue = defineModel<string>({ required: true })
 </script>
 
