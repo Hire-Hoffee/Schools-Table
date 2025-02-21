@@ -1,11 +1,14 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const { options } = defineProps<{ options: { label: string; value: string }[] }>()
+const selectedValue = defineModel<string>({ required: true })
+</script>
 
 <template>
   <div class="select-wrapper">
-    <select>
-      <option value="all" selected>Все виды</option>
-      <option value="Permanent">Постоянное</option>
-      <option value="Unknown">Не определен</option>
+    <select v-model="selectedValue">
+      <option v-for="option in options" :key="option.value" :value="option.value">
+        {{ option.label }}
+      </option>
     </select>
   </div>
 </template>
@@ -38,6 +41,7 @@
     appearance: none;
     font-size: 16px;
     cursor: pointer;
+    padding-right: 50px;
 
     &:focus {
       outline: 1px solid #ddd;

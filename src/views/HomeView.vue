@@ -5,10 +5,14 @@ import SearchInput from '@/components/input/SearchInput.vue'
 import ButtonInput from '@/components/input/ButtonInput.vue'
 import PaginationBlock from '@/components/pagination/PaginationBlock.vue'
 import { useSchoolsRecordsStore } from '@/stores/SchoolsRecords'
-import { onMounted } from 'vue'
+import { onMounted, watch } from 'vue'
 
 const schoolsStore = useSchoolsRecordsStore()
 onMounted(() => schoolsStore.fetchSchoolsRecords())
+watch(
+  () => schoolsStore.count,
+  () => schoolsStore.fetchSchoolsRecords(),
+)
 </script>
 
 <template>

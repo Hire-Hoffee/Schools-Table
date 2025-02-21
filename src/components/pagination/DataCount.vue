@@ -1,5 +1,21 @@
 <script setup lang="ts">
+import { ref, watch } from 'vue'
 import SelectInput from '../input/SelectInput.vue'
+import { useSchoolsRecordsStore } from '@/stores/SchoolsRecords'
+
+const schoolsStore = useSchoolsRecordsStore()
+const selectedValue = ref(schoolsStore.count)
+const options = [
+  { label: '5', value: '5' },
+  { label: '10', value: '10' },
+  { label: '20', value: '20' },
+]
+
+watch(selectedValue, async (newValue, oldValue) => {
+  if (newValue !== oldValue) {
+    schoolsStore.updateCount(newValue)
+  }
+})
 </script>
 
 <template>
@@ -7,7 +23,7 @@ import SelectInput from '../input/SelectInput.vue'
     <p>1-8 из 50 записей</p>
     <div>
       <p>Показывать</p>
-      <SelectInput />
+      <SelectInput v-model="selectedValue" :options="options" />
     </div>
   </div>
 </template>
