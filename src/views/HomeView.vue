@@ -1,18 +1,15 @@
 <script setup lang="ts">
 import EduTable from '@/components/table/EduTable.vue'
-import SelectInput from '@/components/input/SelectInput.vue'
+// import SelectInput from '@/components/input/SelectInput.vue'
 import SearchInput from '@/components/input/SearchInput.vue'
 import ButtonInput from '@/components/input/ButtonInput.vue'
 import PaginationBlock from '@/components/pagination/PaginationBlock.vue'
-import { useSchoolsRecordsStore } from '@/stores/SchoolsRecords'
+import { useSchoolsRecordsStore } from '@/stores/schoolsRecords'
 import { onMounted, watch } from 'vue'
 
 const schoolsStore = useSchoolsRecordsStore()
 onMounted(() => schoolsStore.fetchSchoolsRecords())
-watch(
-  () => schoolsStore.count,
-  () => schoolsStore.fetchSchoolsRecords(),
-)
+watch([() => schoolsStore.count, () => schoolsStore.page], () => schoolsStore.fetchSchoolsRecords())
 </script>
 
 <template>
@@ -24,9 +21,9 @@ watch(
     </div>
   </div>
   <div class="inputs-block">
+    <!-- <SelectInput />
     <SelectInput />
-    <SelectInput />
-    <SelectInput />
+    <SelectInput /> -->
   </div>
   <EduTable :schools="schoolsStore.schoolsRecords" />
   <PaginationBlock />
