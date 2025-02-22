@@ -1,5 +1,29 @@
+<script setup lang="ts">
+import { watch } from 'vue'
+import { useDataStatusesStore } from '@/stores/dataStatuses'
+
+const { isMainCheckbox } = defineProps<{
+  isMainCheckbox?: boolean
+}>()
+
+const statusesStore = useDataStatusesStore()
+const checked = defineModel<boolean>({ default: false })
+
+watch(
+  () => statusesStore.checkedAll,
+  (newVal) => {
+    checked.value = newVal
+  },
+)
+watch(checked, () => {
+  if (isMainCheckbox) {
+    statusesStore.toggleCheckedAll()
+  }
+})
+</script>
+
 <template>
-  <input type="checkbox" />
+  <input v-model="checked" type="checkbox" />
 </template>
 
 <style scoped lang="scss">

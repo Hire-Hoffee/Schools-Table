@@ -8,7 +8,7 @@ import CheckBox from './CheckBox.vue'
   <div class="header">
     <div class="item">
       <div>
-        <CheckBox class="checkbox" />
+        <CheckBox :isMainCheckbox="true" class="checkbox" />
         <span>Регион</span>
       </div>
       <img :src="sortArrows" alt="sort" />

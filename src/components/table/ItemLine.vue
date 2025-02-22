@@ -12,17 +12,13 @@ defineProps<{
   <div class="line">
     <div>
       <CheckBox />
-      <p>{{ school.region || 'Белгородская область' }}</p>
+      <p>{{ school.region }}</p>
     </div>
     <div>
-      <p>{{ school.title || 'МБОУ Средняя общеобразовательная школа' }}</p>
+      <p>{{ school.title }}</p>
     </div>
     <div>
-      <p>
-        {{
-          school.address || 'ул. Николая Гондатти, д. 13 ул. Н. Гондатти 13 ; ул. Н. Зелинского 22'
-        }}
-      </p>
+      <p>{{ school.address }}</p>
     </div>
     <div>
       <LevelSpan
