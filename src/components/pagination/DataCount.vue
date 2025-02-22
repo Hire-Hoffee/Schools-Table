@@ -16,7 +16,20 @@ watch(selectedValue, (newValue) => schoolsStore.updateCount(newValue))
 
 <template>
   <div class="count-container">
-    <p>1-8 из 50 записей</p>
+    <p>
+      {{
+        Math.min(
+          (Number(schoolsStore.page) - 1) * Number(schoolsStore.count) + 1,
+          schoolsStore.totalCount,
+        )
+      }}
+      -
+      {{
+        Math.min(Number(schoolsStore.page) * Number(schoolsStore.count), schoolsStore.totalCount)
+      }}
+      из {{ schoolsStore.totalCount }} записей
+    </p>
+
     <div>
       <p>Показывать</p>
       <SelectInput v-model="selectedValue" :options="options" />

@@ -3,10 +3,11 @@ import { ref } from 'vue'
 import type { APIResponse, SchoolData } from '@/types/schoolRecords'
 
 export const useSchoolsRecordsStore = defineStore('schoolsRecords', () => {
-  const schoolsRecords = ref<SchoolData[] | undefined>(undefined)
+  const schoolsRecords = ref<SchoolData[] | []>([])
   const count = ref('10')
   const page = ref('1')
-  const totalPages = ref<number | undefined>(undefined)
+  const totalPages = ref<number>(1)
+  const totalCount = ref<number>(1)
   const selectedRegionId = ref('-1')
   const selectedDistrictId = ref('-1')
   const selectedDate = ref('')
@@ -35,6 +36,7 @@ export const useSchoolsRecordsStore = defineStore('schoolsRecords', () => {
 
     schoolsRecords.value = result.list
     totalPages.value = result.pages_count
+    totalCount.value = result.total_count
     isSchoolsLoading.value = false
   }
 
@@ -49,6 +51,7 @@ export const useSchoolsRecordsStore = defineStore('schoolsRecords', () => {
     count,
     page,
     totalPages,
+    totalCount,
     selectedRegionId,
     selectedDistrictId,
     isSchoolsLoading,
