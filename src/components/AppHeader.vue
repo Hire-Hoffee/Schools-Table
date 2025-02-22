@@ -12,6 +12,7 @@ const schoolsStore = useSchoolsRecordsStore()
     <nav>
       <RouterLink to="/">Главная</RouterLink>
       <RouterLink to="/uikit">Компоненты</RouterLink>
+      <RouterLink to="/explanation">Комментарии</RouterLink>
     </nav>
     <ErrorInfo v-if="schoolsStore.errorMessage" :message="schoolsStore.errorMessage" />
   </header>
