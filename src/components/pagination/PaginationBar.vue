@@ -29,6 +29,14 @@ const setPage = (value: number) => {
 const countUp = debounce(() => setPage(currentPage.value + 1), 300)
 const countDown = debounce(() => setPage(currentPage.value - 1), 300)
 
+const goToPage = () => {
+  const input = prompt('Введите номер страницы:')
+  const pageNumber = parseInt(input || '', 10)
+  if (!isNaN(pageNumber) && pageNumber >= 1 && pageNumber <= lastPage.value) {
+    setPage(pageNumber)
+  }
+}
+
 watch(currentPage, (newValue) => schoolsStore.updatePage(newValue.toString()))
 watch(
   () => schoolsStore.totalPages,
@@ -41,7 +49,7 @@ watch(
     <div class="arrow" @click="countDown">&lt;</div>
     <div class="numbers">
       <span :class="{ active: currentPage === 1 }" @click="setPage(1)">1</span>
-      <span class="dots" v-if="pages[0] > 2">...</span>
+      <span class="dots" v-if="pages[0] > 2" @click="goToPage">...</span>
       <span
         v-for="value in pages"
         :key="value"
@@ -50,7 +58,7 @@ watch(
       >
         {{ value }}
       </span>
-      <span class="dots" v-if="pages[pages.length - 1] < lastPage - 1">...</span>
+      <span class="dots" v-if="pages[pages.length - 1] < lastPage - 1" @click="goToPage">...</span>
       <span :class="{ active: currentPage === lastPage }" @click="setPage(lastPage)">{{
         lastPage
       }}</span>
@@ -100,9 +108,12 @@ watch(
 
     .dots {
       border: none;
+      cursor: pointer;
+      font-weight: bold;
     }
   }
 }
+
 @media (max-width: 600px) {
   .bar-container {
     gap: 5px;
