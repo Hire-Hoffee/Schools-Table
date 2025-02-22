@@ -15,7 +15,6 @@ export const useSchoolsRecordsStore = defineStore('schoolsRecords', () => {
 
   const fetchSchoolsRecords = async () => {
     isSchoolsLoading.value = true
-    const url = 'https://schooldb.skillline.ru/api'
     const params = new URLSearchParams()
 
     params.append('count', count.value)
@@ -31,7 +30,7 @@ export const useSchoolsRecordsStore = defineStore('schoolsRecords', () => {
       params.append('updated_at', selectedDate.value)
     }
 
-    const res = await fetch(`${url}/schools?${params}`)
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/schools?${params}`)
     const result = ((await res.json()) as APIResponse).data
 
     schoolsRecords.value = result.list

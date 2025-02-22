@@ -8,18 +8,17 @@ import type {
 } from '@/types/placesRecords'
 
 export const usePlacesRecordsStore = defineStore('placesRecords', () => {
-  const url = 'https://schooldb.skillline.ru/api'
   const regions = ref<Region[] | undefined>(undefined)
   const districts = ref<FederalDistrict[] | undefined>(undefined)
 
   const fetchRegions = async () => {
-    const res = await fetch(url + '/regions')
+    const res = await fetch(import.meta.env.VITE_API_URL + '/regions')
     const result = (await res.json()) as ApiResponseRegions
     regions.value = result.data
   }
 
   const fetchDistricts = async () => {
-    const res = await fetch(url + '/federalDistricts')
+    const res = await fetch(import.meta.env.VITE_API_URL + '/federalDistricts')
     const result = (await res.json()) as ApiResponseDistricts
     districts.value = result.data
   }
