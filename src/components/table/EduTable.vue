@@ -2,14 +2,19 @@
 import HeaderLine from './HeaderLine.vue'
 import ItemLine from './ItemLine.vue'
 import type { SchoolData } from '@/types/schoolRecords'
+import { useSchoolsRecordsStore } from '@/stores/schoolsRecords'
+import SkeletonLoader from '@/components/SkeletonLoader.vue'
 
 defineProps<{
   schools: SchoolData[] | undefined
 }>()
+
+const schoolsStore = useSchoolsRecordsStore()
 </script>
 
 <template>
   <div class="table-container">
+    <SkeletonLoader v-if="schoolsStore.isSchoolsLoading" />
     <HeaderLine />
     <div>
       <ItemLine
@@ -29,5 +34,6 @@ defineProps<{
 <style scoped lang="scss">
 .table-container {
   margin-top: 24px;
+  position: relative;
 }
 </style>

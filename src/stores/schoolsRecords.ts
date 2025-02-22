@@ -9,8 +9,10 @@ export const useSchoolsRecordsStore = defineStore('schoolsRecords', () => {
   const totalPages = ref<number | undefined>(undefined)
   const selectedRegionId = ref(-1)
   const selectedDistrictId = ref(-1)
+  const isSchoolsLoading = ref(false)
 
   const fetchSchoolsRecords = async () => {
+    isSchoolsLoading.value = true
     const url = 'https://schooldb.skillline.ru/api'
     const params = new URLSearchParams()
 
@@ -29,6 +31,7 @@ export const useSchoolsRecordsStore = defineStore('schoolsRecords', () => {
 
     schoolsRecords.value = result.list
     totalPages.value = result.pages_count
+    isSchoolsLoading.value = false
   }
 
   const updateCount = (value: number) => (count.value = value)
@@ -43,6 +46,7 @@ export const useSchoolsRecordsStore = defineStore('schoolsRecords', () => {
     totalPages,
     selectedRegionId,
     selectedDistrictId,
+    isSchoolsLoading,
     fetchSchoolsRecords,
     updateCount,
     updatePage,
