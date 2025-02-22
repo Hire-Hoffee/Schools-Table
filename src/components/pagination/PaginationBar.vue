@@ -29,7 +29,7 @@ const setPage = (value: number) => {
 const countUp = debounce(() => setPage(currentPage.value + 1), 300)
 const countDown = debounce(() => setPage(currentPage.value - 1), 300)
 
-watch(currentPage, (newValue) => schoolsStore.updatePage(newValue))
+watch(currentPage, (newValue) => schoolsStore.updatePage(newValue.toString()))
 watch(
   () => schoolsStore.totalPages,
   (newValue) => (lastPage.value = newValue!),

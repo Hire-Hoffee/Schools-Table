@@ -16,6 +16,7 @@ watch(
     () => schoolsStore.page,
     () => schoolsStore.selectedRegionId,
     () => schoolsStore.selectedDistrictId,
+    () => schoolsStore.selectedDate,
   ],
   () => schoolsStore.fetchSchoolsRecords(),
 )

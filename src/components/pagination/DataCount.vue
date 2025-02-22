@@ -11,7 +11,7 @@ const options = [
   { label: '20', value: '20' },
 ]
 
-watch(selectedValue, (newValue) => schoolsStore.updateCount(Number(newValue)))
+watch(selectedValue, (newValue) => schoolsStore.updateCount(newValue))
 </script>
 
 <template>

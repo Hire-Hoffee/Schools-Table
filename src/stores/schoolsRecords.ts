@@ -4,11 +4,12 @@ import type { APIResponse, SchoolData } from '@/types/schoolRecords'
 
 export const useSchoolsRecordsStore = defineStore('schoolsRecords', () => {
   const schoolsRecords = ref<SchoolData[] | undefined>(undefined)
-  const count = ref(10)
-  const page = ref(1)
+  const count = ref('10')
+  const page = ref('1')
   const totalPages = ref<number | undefined>(undefined)
-  const selectedRegionId = ref(-1)
-  const selectedDistrictId = ref(-1)
+  const selectedRegionId = ref('-1')
+  const selectedDistrictId = ref('-1')
+  const selectedDate = ref('')
   const isSchoolsLoading = ref(false)
 
   const fetchSchoolsRecords = async () => {
@@ -16,14 +17,17 @@ export const useSchoolsRecordsStore = defineStore('schoolsRecords', () => {
     const url = 'https://schooldb.skillline.ru/api'
     const params = new URLSearchParams()
 
-    params.append('count', String(count.value))
-    params.append('page', String(page.value))
+    params.append('count', count.value)
+    params.append('page', page.value)
 
-    if (Number(selectedDistrictId.value) !== -1) {
+    if (selectedDistrictId.value !== '-1') {
       params.append('federal_district_id', String(selectedDistrictId.value))
     }
-    if (Number(selectedRegionId.value) !== -1) {
+    if (selectedRegionId.value !== '-1') {
       params.append('region_id', String(selectedRegionId.value))
+    }
+    if (selectedDate.value !== '') {
+      params.append('updated_at', selectedDate.value)
     }
 
     const res = await fetch(`${url}/schools?${params}`)
@@ -34,10 +38,11 @@ export const useSchoolsRecordsStore = defineStore('schoolsRecords', () => {
     isSchoolsLoading.value = false
   }
 
-  const updateCount = (value: number) => (count.value = value)
-  const updatePage = (value: number) => (page.value = value)
-  const updateRegionId = (value: number) => (selectedRegionId.value = value)
-  const updateDistrictId = (value: number) => (selectedDistrictId.value = value)
+  const updateCount = (value: string) => (count.value = value)
+  const updatePage = (value: string) => (page.value = value)
+  const updateRegionId = (value: string) => (selectedRegionId.value = value)
+  const updateDistrictId = (value: string) => (selectedDistrictId.value = value)
+  const updateDate = (value: string) => (selectedDate.value = value)
 
   return {
     schoolsRecords,
@@ -47,10 +52,12 @@ export const useSchoolsRecordsStore = defineStore('schoolsRecords', () => {
     selectedRegionId,
     selectedDistrictId,
     isSchoolsLoading,
+    selectedDate,
     fetchSchoolsRecords,
     updateCount,
     updatePage,
     updateRegionId,
     updateDistrictId,
+    updateDate,
   }
 })
