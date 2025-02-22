@@ -12,6 +12,7 @@ export const useSchoolsRecordsStore = defineStore('schoolsRecords', () => {
   const selectedDistrictId = ref('-1')
   const selectedDate = ref('')
   const isSchoolsLoading = ref(false)
+  const errorMessage = ref('')
 
   const fetchSchoolsRecords = async () => {
     isSchoolsLoading.value = true
@@ -30,13 +31,22 @@ export const useSchoolsRecordsStore = defineStore('schoolsRecords', () => {
       params.append('updated_at', selectedDate.value)
     }
 
-    const res = await fetch(`${import.meta.env.VITE_API_URL}/schools?${params}`)
-    const result = ((await res.json()) as APIResponse).data
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/schools?${params}`)
+      const result = ((await res.json()) as APIResponse).data
 
-    schoolsRecords.value = result.list
-    totalPages.value = result.pages_count
-    totalCount.value = result.total_count
-    isSchoolsLoading.value = false
+      schoolsRecords.value = result.list
+      totalPages.value = result.pages_count
+      totalCount.value = result.total_count
+      isSchoolsLoading.value = false
+      errorMessage.value = ''
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        errorMessage.value = error.message
+      } else {
+        errorMessage.value = 'Произошла неизвестная ошибка'
+      }
+    }
   }
 
   const updateCount = (value: string) => (count.value = value)
@@ -55,6 +65,7 @@ export const useSchoolsRecordsStore = defineStore('schoolsRecords', () => {
     selectedDistrictId,
     isSchoolsLoading,
     selectedDate,
+    errorMessage,
     fetchSchoolsRecords,
     updateCount,
     updatePage,

@@ -20,7 +20,7 @@
   background-size: 200% 100%;
   animation: shimmer 5s infinite linear;
   backdrop-filter: blur(5px);
-  z-index: 9999;
+  z-index: 100;
 }
 
 @keyframes shimmer {

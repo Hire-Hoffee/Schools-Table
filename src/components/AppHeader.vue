@@ -1,5 +1,9 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
+import ErrorInfo from '@/components/ErrorInfo.vue'
+import { useSchoolsRecordsStore } from '@/stores/schoolsRecords'
+
+const schoolsStore = useSchoolsRecordsStore()
 </script>
 
 <template>
@@ -9,6 +13,7 @@ import { RouterLink } from 'vue-router'
       <RouterLink to="/">Главная</RouterLink>
       <RouterLink to="/uikit">Компоненты</RouterLink>
     </nav>
+    <ErrorInfo v-if="schoolsStore.errorMessage" :message="schoolsStore.errorMessage" />
   </header>
 </template>
 
@@ -21,6 +26,7 @@ header {
   display: flex;
   justify-content: space-around;
   align-items: flex-end;
+  position: relative;
 
   h1 {
     font-weight: bold;

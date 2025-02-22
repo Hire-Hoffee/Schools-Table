@@ -29,7 +29,7 @@ defineProps<{
     top: -50px;
     left: 0px;
     cursor: default;
-    z-index: 9999;
+    z-index: 10;
     opacity: 0;
     visibility: hidden;
     transition:
