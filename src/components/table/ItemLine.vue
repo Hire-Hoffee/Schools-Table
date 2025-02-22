@@ -70,6 +70,10 @@ defineProps<{
       }
     }
   }
+
+  @media (max-width: 820px) {
+    grid-template-columns: 200px 200px 200px 150px;
+  }
 }
 
 hr {

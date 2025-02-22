@@ -18,5 +18,10 @@ import PaginationBar from './PaginationBar.vue'
   justify-content: space-between;
   font-size: 12px;
   color: #687588;
+
+  @media (max-width: 960px) {
+    flex-direction: column;
+    gap: 24px;
+  }
 }
 </style>

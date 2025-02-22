@@ -103,4 +103,19 @@ watch(
     }
   }
 }
+@media (max-width: 600px) {
+  .bar-container {
+    gap: 5px;
+
+    .arrow {
+      padding: 8px 12px;
+    }
+
+    .numbers {
+      span {
+        padding: 8px 12px;
+      }
+    }
+  }
+}
 </style>

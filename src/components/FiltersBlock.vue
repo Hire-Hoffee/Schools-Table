@@ -55,5 +55,9 @@ watch([selectedRegionId, selectedDistrictId, selectedDate], ([newRegion, newDist
   display: flex;
   gap: 16px;
   margin-top: 24px;
+
+  @media (max-width: 960px) {
+    flex-direction: column;
+  }
 }
 </style>

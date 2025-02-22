@@ -25,7 +25,7 @@ watch(
 <template>
   <div class="header">
     <h1>Таблица учреждений</h1>
-    <div>
+    <div class="search-block">
       <SearchInput />
       <ButtonInput />
     </div>
@@ -48,6 +48,20 @@ watch(
   div {
     display: flex;
     gap: 20px;
+  }
+
+  @media (max-width: 960px) {
+    flex-direction: column;
+    gap: 24px;
+  }
+  @media (max-width: 600px) {
+    h1 {
+      font-size: 24px;
+    }
+    div {
+      flex-direction: column;
+      gap: 16px;
+    }
   }
 }
 </style>

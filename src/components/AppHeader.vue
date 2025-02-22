@@ -44,5 +44,14 @@ header {
       font-weight: bold;
     }
   }
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    gap: 20px;
+    height: 110px;
+    h1 {
+      font-size: 24px;
+    }
+  }
 }
 </style>

@@ -35,5 +35,7 @@ const schoolsStore = useSchoolsRecordsStore()
 .table-container {
   margin-top: 24px;
   position: relative;
+  overflow: hidden;
+  overflow-x: auto;
 }
 </style>
