@@ -1,8 +1,22 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref, watch } from 'vue'
+import { debounce } from 'lodash-es'
+
+const searchValue = defineModel<string>({ required: true })
+const tempValue = ref(searchValue.value)
+
+const updateSearchValue = debounce((val: string) => {
+  searchValue.value = val
+}, 500)
+
+watch(tempValue, (newVal) => {
+  updateSearchValue(newVal)
+})
+</script>
 
 <template>
   <div class="input-wrapper">
-    <input type="text" placeholder="Поиск" />
+    <input v-model="tempValue" type="text" placeholder="Поиск по названию" />
   </div>
 </template>
 

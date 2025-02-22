@@ -5,11 +5,24 @@ import FilersBlock from '@/components/FiltersBlock.vue'
 import ButtonInput from '@/components/input/ButtonInput.vue'
 import PaginationBlock from '@/components/pagination/PaginationBlock.vue'
 import { useSchoolsRecordsStore } from '@/stores/schoolsRecords'
-import { onMounted, watch } from 'vue'
+import { onMounted, watch, ref, computed } from 'vue'
 
 const schoolsStore = useSchoolsRecordsStore()
+const searchValue = ref('')
+const foundData = computed(() => {
+  if (!searchValue.value) {
+    return []
+  }
+  return schoolsStore.schoolsRecords.filter((school) =>
+    school.edu_org.short_name?.toLowerCase().includes(searchValue.value?.toLowerCase()),
+  )
+})
 
-onMounted(() => schoolsStore.fetchSchoolsRecords())
+onMounted(() => {
+  if (schoolsStore.schoolsRecords.length === 0) {
+    schoolsStore.fetchSchoolsRecords()
+  }
+})
 watch(
   [
     () => schoolsStore.count,
@@ -26,12 +39,12 @@ watch(
   <div class="header">
     <h1>Таблица учреждений</h1>
     <div class="search-block">
-      <SearchInput />
+      <SearchInput v-model="searchValue" />
       <ButtonInput />
     </div>
   </div>
   <FilersBlock />
-  <EduTable :schools="schoolsStore.schoolsRecords" />
+  <EduTable :schools="foundData.length ? foundData : schoolsStore.schoolsRecords" />
   <PaginationBlock />
 </template>
 
