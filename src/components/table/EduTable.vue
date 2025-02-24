@@ -16,7 +16,7 @@ const schoolsStore = useSchoolsRecordsStore()
   <div class="table-container">
     <SkeletonLoader v-if="schoolsStore.isSchoolsLoading" />
     <HeaderLine />
-    <div>
+    <div v-if="schools.length > 0">
       <ItemLine
         v-for="school in schools"
         :key="school.uuid"
@@ -28,6 +28,9 @@ const schoolsStore = useSchoolsRecordsStore()
         }"
       />
     </div>
+    <div v-else class="not-found">
+      <p>Ничего не найдено</p>
+    </div>
   </div>
 </template>
 
@@ -37,5 +40,12 @@ const schoolsStore = useSchoolsRecordsStore()
   position: relative;
   overflow: hidden;
   overflow-x: auto;
+
+  .not-found {
+    width: 100%;
+    text-align: center;
+    font-size: 24px;
+    padding: 10px;
+  }
 }
 </style>
