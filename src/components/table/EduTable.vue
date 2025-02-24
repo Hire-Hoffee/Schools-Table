@@ -16,7 +16,7 @@ const schoolsStore = useSchoolsRecordsStore()
   <div class="table-container">
     <SkeletonLoader v-if="schoolsStore.isSchoolsLoading" />
     <HeaderLine />
-    <div v-if="schools.length > 0">
+    <div v-if="schools && schools.length > 0">
       <ItemLine
         v-for="school in schools"
         :key="school.uuid"
