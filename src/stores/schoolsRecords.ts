@@ -35,6 +35,11 @@ export const useSchoolsRecordsStore = defineStore('schoolsRecords', () => {
 
     try {
       const res = await fetch(`${import.meta.env.VITE_API_URL}/schools?${params}`)
+
+      if (!res.ok) {
+        throw new Error(`Ошибка: ${res.statusText}`)
+      }
+
       const result = ((await res.json()) as APIResponse).data
 
       schoolsRecords.value = result.list
@@ -42,7 +47,8 @@ export const useSchoolsRecordsStore = defineStore('schoolsRecords', () => {
       totalCount.value = result.total_count
       isSchoolsLoading.value = false
       errorMessage.value = ''
-    } catch (error: unknown) {
+    } catch (error) {
+      isSchoolsLoading.value = false
       if (error instanceof Error) {
         errorMessage.value = error.message
       } else {
