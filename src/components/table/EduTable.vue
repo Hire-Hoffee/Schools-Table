@@ -24,7 +24,7 @@ const schoolsStore = useSchoolsRecordsStore()
           region: school.edu_org.region.name,
           title: school.edu_org.short_name,
           address: school.edu_org.contact_info.post_address,
-          level: school.supplements[0].educational_programs,
+          level: school.supplements?.[0]?.educational_programs,
         }"
       />
     </div>
