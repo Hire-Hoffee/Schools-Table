@@ -28,8 +28,6 @@ export const useSchoolsRecordsStore = defineStore('schoolsRecords', () => {
       params.append('region_id', String(selectedRegionId.value))
     }
     if (selectedDate.value !== '' && selectedDate.value !== '-1') {
-      console.log(selectedDate.value)
-
       params.append('updated_at', selectedDate.value)
     }
 
