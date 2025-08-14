@@ -26,8 +26,7 @@ button {
   transition: 0.2s;
 
   &:hover {
-    opacity: 0.9;
-    transition: 0.2s;
+    opacity: 0.8;
   }
 
   span {

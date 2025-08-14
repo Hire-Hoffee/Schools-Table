@@ -44,7 +44,6 @@ header {
     }
     a:hover {
       opacity: 0.8;
-      transition: 0.2s;
     }
 
     .router-link-active {

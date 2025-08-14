@@ -30,7 +30,6 @@ const selectedValue = defineModel<string>({ required: true })
 
   &:focus-within::after {
     transform: translateY(-50%) rotate(180deg);
-    transition: 0.2s;
   }
 
   select {

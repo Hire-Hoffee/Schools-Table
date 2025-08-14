@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import sortArrows from '@/assets/images/sort_arrows.svg'
 import CheckBox from './CheckBox.vue'
 </script>
 
@@ -10,19 +9,19 @@ import CheckBox from './CheckBox.vue'
         <CheckBox :isMainCheckbox="true" class="checkbox" />
         <span>Регион</span>
       </div>
-      <img :src="sortArrows" alt="sort" />
+      <img src="@/assets/images/sort_arrows.svg" alt="sort" />
     </div>
     <div class="item">
       <span>Название</span>
-      <img :src="sortArrows" alt="sort" />
+      <img src="@/assets/images/sort_arrows.svg" alt="sort" />
     </div>
     <div class="item">
       <span>Адрес</span>
-      <img :src="sortArrows" alt="sort" />
+      <img src="@/assets/images/sort_arrows.svg" alt="sort" />
     </div>
     <div class="item">
       <span>Уровень образования</span>
-      <img :src="sortArrows" alt="sort" />
+      <img src="@/assets/images/sort_arrows.svg" alt="sort" />
     </div>
   </div>
 </template>
