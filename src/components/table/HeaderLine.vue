@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// import sortUp from '@/assets/images/sort_up.svg'
 import sortArrows from '@/assets/images/sort_arrows.svg'
 import CheckBox from './CheckBox.vue'
 </script>

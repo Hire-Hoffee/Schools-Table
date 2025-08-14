@@ -12,21 +12,24 @@ defineProps<{
   <div class="line">
     <div>
       <CheckBox />
-      <p>{{ school.region }}</p>
+      <p>{{ school.region ?? '—' }}</p>
     </div>
     <div>
-      <p>{{ school.title }}</p>
+      <p>{{ school.title ?? '—' }}</p>
     </div>
     <div>
-      <p>{{ school.address }}</p>
+      <p>{{ school.address ?? '—' }}</p>
     </div>
-    <div>
+    <div v-if="school.level.some((level) => level.edu_level.short_name)">
       <LevelSpan
         v-for="level in school.level"
         :key="level.uuid"
         :name="level.edu_level.name"
         :short_name="level.edu_level.short_name"
       />
+    </div>
+    <div v-else>
+      <p>—</p>
     </div>
   </div>
   <hr />
