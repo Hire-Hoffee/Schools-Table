@@ -20,7 +20,7 @@ defineProps<{
     <div>
       <p>{{ school.address ?? '—' }}</p>
     </div>
-    <div v-if="school.level.some((level) => level.edu_level.short_name)">
+    <div v-if="school.level?.some((level) => level.edu_level.short_name)">
       <LevelSpan
         v-for="level in school.level"
         :key="level.uuid"
