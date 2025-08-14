@@ -4,6 +4,7 @@ import docImg from '@/assets/images/doc.svg'
 
 <template>
   <button>
+    <!-- апишка не работает для скачивания, поэтому реализацию делать без тестирования не очень хочется  -->
     <img :src="docImg" alt="doc" />
     <span>Скачать</span>
   </button>
