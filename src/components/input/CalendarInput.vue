@@ -20,7 +20,7 @@ const months = [
   'Ноябрь',
   'Декабрь',
 ]
-const weekdays = ['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ']
+const weekdays = ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС']
 
 const currentYear = ref(new Date().getFullYear())
 const currentMonth = ref(new Date().getMonth())
@@ -48,14 +48,15 @@ const displayText = computed(() => {
 
 const lastMonthDays = computed(() => {
   const lastDays = []
-  for (let i = 0; i < new Date(currentYear.value, currentMonth.value, 1).getDay(); i++) {
+  for (let i = 0; i < new Date(currentYear.value, currentMonth.value, 0).getDay(); i++) {
     lastDays.push(new Date(currentYear.value, currentMonth.value, 0 - i).getDate())
   }
   return lastDays.reverse()
 })
 
 const newMonthDays = computed(() => {
-  return 6 - new Date(currentYear.value, currentMonth.value + 1, 0).getDay()
+  const date = new Date(currentYear.value, currentMonth.value + 1, 0).getDay()
+  return 7 - (date === 0 ? 7 : date)
 })
 
 const selectMonth = (toDo: 'plus' | 'minus') => {
@@ -77,6 +78,8 @@ const selectDate = async () => {
 
 const cancelSelection = () => {
   emit('getDate', '-1')
+  currentYear.value = new Date().getFullYear()
+  currentMonth.value = new Date().getMonth()
   isDateSelected.value = false
   openCalendar.value = false
 }
@@ -120,7 +123,17 @@ watch(currentMonth, (newMonth, oldMonth) => {
           </div>
         </div>
         <div class="days-container">
-          <div v-for="emptyDay in lastMonthDays" :key="emptyDay" class="empty-day">
+          <div
+            v-for="emptyDay in lastMonthDays"
+            :key="emptyDay"
+            class="empty-day"
+            @click="
+              () => {
+                selectMonth('minus')
+                selectDay(emptyDay)
+              }
+            "
+          >
             <span>{{ emptyDay }}</span>
           </div>
           <div
@@ -132,7 +145,17 @@ watch(currentMonth, (newMonth, oldMonth) => {
           >
             <span>{{ day }}</span>
           </div>
-          <div v-for="emptyDay in newMonthDays" :key="emptyDay" class="empty-day">
+          <div
+            v-for="emptyDay in newMonthDays"
+            :key="emptyDay"
+            class="empty-day"
+            @click="
+              () => {
+                selectMonth('plus')
+                selectDay(emptyDay)
+              }
+            "
+          >
             <span>{{ emptyDay }}</span>
           </div>
         </div>
@@ -234,7 +257,8 @@ watch(currentMonth, (newMonth, oldMonth) => {
   row-gap: 10px;
   column-gap: 13px;
 
-  .day {
+  .day,
+  .empty-day {
     width: 34px;
     height: 34px;
     display: flex;
@@ -250,11 +274,6 @@ watch(currentMonth, (newMonth, oldMonth) => {
 
   .empty-day {
     opacity: 0.5;
-    width: 34px;
-    height: 34px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 }
 
