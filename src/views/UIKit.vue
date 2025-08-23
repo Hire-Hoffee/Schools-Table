@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import ButtonInput from '@/components/input/ButtonInput.vue'
+import ButtonInput from '@/components/input/CustomButton.vue'
 import SelectInput from '@/components/input/SelectInput.vue'
 import SearchInput from '@/components/input/SearchInput.vue'
 import LevelSpan from '@/components/table/LevelSpan.vue'
 import ItemLine from '@/components/table/ItemLine.vue'
 import { ref } from 'vue'
 import type { EducationalProgram } from '@/types/schoolRecords'
+import CalendarInput from '@/components/input/CalendarInput.vue'
 
 const testSelect = ref('test')
 const testSearch = ref('')
@@ -30,6 +31,7 @@ const testSearch = ref('')
       }"
     />
     <LevelSpan :name="'Test'" :short_name="'Test'" />
+    <div :style="{ width: '500px' }"><CalendarInput /></div>
   </div>
 </template>
 

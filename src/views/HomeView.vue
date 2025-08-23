@@ -2,10 +2,11 @@
 import EduTable from '@/components/table/EduTable.vue'
 import SearchInput from '@/components/input/SearchInput.vue'
 import FilersBlock from '@/components/FiltersBlock.vue'
-import ButtonInput from '@/components/input/ButtonInput.vue'
+import ButtonInput from '@/components/input/CustomButton.vue'
 import PaginationBlock from '@/components/pagination/PaginationBlock.vue'
 import { useSchoolsRecordsStore } from '@/stores/schoolsRecords'
 import { onMounted, watch, ref, computed } from 'vue'
+import docImg from '@/assets/images/doc.svg'
 
 const schoolsStore = useSchoolsRecordsStore()
 const searchValue = ref('')
@@ -40,7 +41,7 @@ watch(
     <h1>Таблица учреждений</h1>
     <div class="search-block">
       <SearchInput v-model="searchValue" />
-      <ButtonInput />
+      <ButtonInput text="Скачать" :icon="docImg" />
     </div>
   </div>
   <FilersBlock />

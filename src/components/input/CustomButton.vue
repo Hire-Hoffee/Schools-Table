@@ -1,12 +1,17 @@
 <script setup lang="ts">
-import docImg from '@/assets/images/doc.svg'
+import type { CSSProperties } from 'vue'
+
+const { text, icon } = defineProps<{
+  text?: string
+  icon?: string
+  styles?: CSSProperties
+}>()
 </script>
 
 <template>
-  <button>
-    <!-- апишка не работает для скачивания, поэтому реализацию делать без тестирования не очень хочется  -->
-    <img :src="docImg" alt="doc" />
-    <span>Скачать</span>
+  <button :style="styles">
+    <img :src="icon" alt="icon" v-if="icon" />
+    <span :style="{ marginLeft: icon ? '8px' : '0' }">{{ text || 'Кнопка' }}</span>
   </button>
 </template>
 
@@ -27,10 +32,6 @@ button {
 
   &:hover {
     opacity: 0.8;
-  }
-
-  span {
-    margin-left: 8px;
   }
 }
 </style>
